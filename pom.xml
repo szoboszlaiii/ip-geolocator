@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>hu.unideb.inf</groupId>
 	<artifactId>ip-geolocator</artifactId>
@@ -8,7 +8,7 @@
 	<description>Java class library for obtaining geolocation information of an IP address.</description>
 	<developers>
 		<developer>
-			<id>jeszy</id>
+			<id>szoboszlaiistvan</id>
 			<name>Szoboszlai Istvan</name>
 			<email>szistvan2014@gmail.com</email>
 			<organization>Faculty of Informatics, University of Debrecen</organization>
@@ -41,14 +41,14 @@
 			<version>2.12.1</version>
 			<scope>compile</scope>
 		</dependency>
-<!--
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.11</version>
-			<scope>compile</scope>
-		</dependency>
-		-->
+		<!--
+                <dependency>
+                    <groupId>org.apache.commons</groupId>
+                    <artifactId>commons-lang3</artifactId>
+                    <version>3.11</version>
+                    <scope>compile</scope>
+                </dependency>
+                -->
 
 
 		<dependency>
@@ -102,7 +102,7 @@
 						<configuration>
 							<transformers>
 								<transformer
-								implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+										implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 									<mainClass>${mainClass}</mainClass>
 								</transformer>
 							</transformers>
@@ -117,6 +117,18 @@
 				<artifactId>maven-site-plugin</artifactId>
 				<version>3.9.1</version>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.9.1</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.wagon</groupId>
+						<artifactId>wagon-ssh</artifactId>
+						<version>3.4.2</version>
+					</dependency>
+				</dependencies>
+			</plugin>
 		</plugins>
 	</build>
 	<reporting>
@@ -128,4 +140,10 @@
 			</plugin>
 		</plugins>
 	</reporting>
+	<distributionManagement>
+		<site>
+			<id>shrek</id>
+			<url>scp://szoboszlaiistvan@shrek.unideb.hu:2222/home/szoboszlaiistvan/public_html/${project.artifactId}</url>
+		</site>
+	</distributionManagement>
 </project>
